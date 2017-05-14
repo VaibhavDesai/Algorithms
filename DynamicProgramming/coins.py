@@ -34,15 +34,29 @@ def DpChange(money, coins):
     return minChange[money]
 
 
+def checkIfPossible(money, coins):
+    if(money <=0 ):
+        return False
+    
+    isDivisible  = False
+    for coin in coins:
+        if(money%coin == 0):
+            isDivisible = True
 
-money =int(input("Enter money \n"))
+    return isDivisible
+    
+money =int(input())
 
 coins = [int(x) for x in input().split()]
 
-start = time.time()
-print("MinChange using Dynamic Programming:"+str(DpChange(money,coins)))
-print("Time taken :" +str(time.time() - start))
+if(checkIfPossible(money,coins)):
+    
+    start = time.time()
+    print("MinChange using Dynamic Programming:"+str(DpChange(money,coins)))
+    print("Time taken :" +str(time.time() - start))
 
-start = time.time()
-print("Min Chnage using recersion:"+str(minChange(money,coins)))
-print("Time taken :"+str(time.time()-start))
+    start = time.time()
+    print("Min Chnage using recersion:"+str(minChange(money,coins)))
+    print("Time taken :"+str(time.time()-start))
+else:
+    print("Calculation not possible")
