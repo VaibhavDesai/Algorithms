@@ -1,3 +1,5 @@
+import time
+
 def minChange(money,coins):
     
     if(money == 0):
@@ -14,8 +16,33 @@ def minChange(money,coins):
     return minCoins
 
 
-money =int(input("Enter money"))
+def DpChange(money, coins):
+    minChange = [999]*1000
+    minChange[0] = 0
+
+    for i in range(1,money+1):
+
+        minValue = 999
+
+        for coin in coins:
+            if( i >= coin):
+                value = minChange[i-coin] + 1
+                if(value < minValue):
+                    minValue = value
+                    minChange[i] = minValue
+
+    return minChange[money]
+
+
+
+money =int(input("Enter money \n"))
 
 coins = [int(x) for x in input().split()]
 
-print("Min Chnage:"+str(minChange(money,coins)))
+start = time.time()
+print("MinChange using Dynamic Programming:"+str(DpChange(money,coins)))
+print("Time taken :" +str(time.time() - start))
+
+start = time.time()
+print("Min Chnage using recersion:"+str(minChange(money,coins)))
+print("Time taken :"+str(time.time()-start))
