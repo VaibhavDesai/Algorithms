@@ -22,9 +22,24 @@ def path(row, col):
 		return 0
 	
 	return rowSum+colSum
-	
-grid = [ int(x) for x in input().split()]
-maxRow = grid[0]
-maxCol = grid[1]
 
+def DPPath():
+
+	for x in range(maxRow):
+		matrix[x][0] = 1
+	for y in range(maxCol):
+		maxtrix[0][y] = 1
+
+	for x in range(1,maxRow):
+		for y in range(1,maxCol):
+			matrix[x][y] = matrix[x-1][y]+matrix[x][y-1]
+
+	return matrix[maxRow-1][maxCol-1]
+
+elements = [ int(x) for x in input().split()]
+maxRow = elements[0]
+maxCol = elements[1]
+maxtrix = [[ 0 for x in range(maxCol)] for y in range(maxRow)]
+
+print(DPPath())
 print(path(0,0))
