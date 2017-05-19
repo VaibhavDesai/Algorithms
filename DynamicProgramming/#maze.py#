@@ -1,0 +1,8 @@
+import time
+
+def isValidBlock(a[][], row, colum):
+
+    if(a[row][colum] == 999):
+        return 999
+    
+    

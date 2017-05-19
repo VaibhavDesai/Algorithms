@@ -1,3 +1,5 @@
+import time
+
 def validCell(row,col):
 	if row < maxRow and col < maxCol:
 		return True
@@ -23,23 +25,26 @@ def path(row, col):
 	
 	return rowSum+colSum
 
-def DPPath():
+def DPPath(maxRow,maxCol):
+        matrix = [[ 0 for x in range(maxCol)] for y in range(maxRow)]
+        
+        for x in range(maxRow):
+                matrix[x][0] = 1
+        for y in range(maxCol):
+                matrix[0][y] = 1
+        for x in range(1,maxRow):
+                for y in range(1,maxCol):
+                        matrix[x][y] = matrix[x-1][y]+matrix[x][y-1]
 
-	for x in range(maxRow):
-		matrix[x][0] = 1
-	for y in range(maxCol):
-		maxtrix[0][y] = 1
+        return matrix[maxRow-1][maxCol-1]
 
-	for x in range(1,maxRow):
-		for y in range(1,maxCol):
-			matrix[x][y] = matrix[x-1][y]+matrix[x][y-1]
+grid = [int(x) for x in input().split(" ")]
+maxRow = grid[0]
+maxCol = grid[1]
 
-	return matrix[maxRow-1][maxCol-1]
-
-elements = [ int(x) for x in input().split()]
-maxRow = elements[0]
-maxCol = elements[1]
-maxtrix = [[ 0 for x in range(maxCol)] for y in range(maxRow)]
-
-print(DPPath())
+startTime = time.time()
 print(path(0,0))
+print("Time take by recurrsion is:"+str(time.time()-startTime))
+startTime = time.time()
+print(DPPath(maxRow,maxCol))
+print("Time take by DP is:"+str(time.time()-startTime))
