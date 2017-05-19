@@ -5,6 +5,8 @@ You want to sell all the wines you have, but you want to sell exactly one wine p
 You want to find out, what is the maximum profit you can get, if you sell the wines in optimal order?
 '''
 
+import time
+
 def calPrice(year, start, end):
 
     if(start > end):
@@ -16,6 +18,27 @@ def calPrice(year, start, end):
     
     return max(price1,price2)
 
+
+def DPsolution(start,end):
+
+    if(start > end):
+        return 0
+
+    if(ans[start][end]!=-1):
+        return ans[start][end]
+
+    year = len(P) - (end-start+1) + 1
+    ans[start][end] = max(
+        DPsolution(start+1,end) + year*P[start],
+        DPsolution(start,end-1) + year*P[end])
+    
+    return ans[start][end]    
 P = [int(x) for x in input().split()]
 
+ans = [[ -1 for x in range(len(P))] for y in range(len(P))]
+start  = time.time()
+print(str(DPsolution(0,len(P)-1)))
+print("time taken by DP is :"+str(time.time()-start))
+start = time.time()
 print(str(calPrice(1,0,len(P)-1)))
+print("time taken by recurssion is :"+str(time.time()-start))
