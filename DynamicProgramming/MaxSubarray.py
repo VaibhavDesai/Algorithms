@@ -1,8 +1,8 @@
 
 def maxContigous(n,array):
 
-    pb = array[0]
-    maxSum=array[0]
+    pb = 0 
+    maxSum=0
     for i in range(n):
         pb = max(pb+array[i],array[i])
         maxSum = max(maxSum,pb)
