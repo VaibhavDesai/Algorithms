@@ -1,0 +1,8 @@
+
+
+
+firstIn = [int(x) for x in input().split()]
+n = firstIn[0]
+q = firstIn[1]
+quries = []
+for i in range(q):

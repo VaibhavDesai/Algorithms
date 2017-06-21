@@ -1,0 +1,8 @@
+
+inp = [int(x) for x in input().split()]
+
+x = inp[0]
+n = inp[1]
+
+def calSum():
+    
